@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tappy"
-run/main_scene="uid://djll4ex0yqc08"
+run/main_scene="uid://y2u10umdhs2n"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -21,8 +21,8 @@ settings/stdout/print_fps=true
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=1281
+window/size/viewport_width=554
+window/size/viewport_height=985
 window/stretch/mode="canvas_items"
 
 [editor]
@@ -40,4 +40,5 @@ jump={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
