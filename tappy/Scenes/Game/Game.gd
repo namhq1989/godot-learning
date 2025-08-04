@@ -6,6 +6,7 @@ const PipesScene = preload("res://Scenes/Pipes/Pipes.tscn")
 @onready var pipes_holder: Node2D = $PipesHolder
 @onready var pipes_spawn_timer: Timer = $PipesSpawnTimer
 
+
 const SPAWN_OFFSET_X = 100
 const RANDOM_Y_RANGE = 150
 const MIN_Y_DIFFERENCE = 50
@@ -17,9 +18,10 @@ var previous_pipes_y: float = 0
 func _ready() -> void:
 	spawn_pipes()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
+func _enter_tree() -> void:
+	SignalHub.on_plane_died.connect(_on_plane_died)
+
 
 func spawn_pipes() -> void:
 	var pipes = PipesScene.instantiate()
@@ -43,4 +45,4 @@ func _on_pipes_spawn_timer_timeout() -> void:
 
 
 func _on_plane_died() -> void:
-	get_tree().paused = true  
+	get_tree().paused = true

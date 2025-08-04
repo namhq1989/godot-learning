@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://djll4ex0yqc08"]
+[gd_scene load_steps=7 format=3 uid="uid://djll4ex0yqc08"]
 
 [ext_resource type="Texture2D" uid="uid://b8xy4ksykd27a" path="res://Assets/background/rocks_2.png" id="1_gwu2e"]
 [ext_resource type="Script" uid="uid://dxbqup7tasm37" path="res://Scenes/Game/Game.gd" id="1_y3kpf"]
+[ext_resource type="PackedScene" uid="uid://cxoof4kl7pdyu" path="res://Scenes/Game/ParallaxBackground.tscn" id="2_3k6gv"]
 [ext_resource type="PackedScene" uid="uid://88s20fuv24mg" path="res://Scenes/Plane/Plane.tscn" id="2_gwu2e"]
 [ext_resource type="PackedScene" uid="uid://dfpiut1d1fbko" path="res://Scenes/Barrier/Barrier.tscn" id="3_xbxml"]
+[ext_resource type="PackedScene" uid="uid://dj7gtjpyi6ftq" path="res://Scenes/GameUI/GameUi.tscn" id="5_y3kpf"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_y3kpf")
 
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_3k6gv")]
+
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-363, 648)
 scale = Vector2(1.1625, 1.22407)
 texture = ExtResource("1_gwu2e")
@@ -24,5 +29,8 @@ autostart = true
 
 [node name="PipesHolder" type="Node2D" parent="."]
 
-[connection signal="on_plane_died" from="Plane" to="." method="_on_plane_died"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("5_y3kpf")]
+
 [connection signal="timeout" from="PipesSpawnTimer" to="." method="_on_pipes_spawn_timer_timeout"]

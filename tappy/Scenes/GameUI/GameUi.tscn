@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj7gtjpyi6ftq"]
+
+[ext_resource type="FontFile" uid="uid://dd3esqnokplf4" path="res://Assets/fonts/LuckiestGuy-Regular.ttf" id="1_81r78"]
+[ext_resource type="Script" uid="uid://cdbm50x1ucx10" path="res://Scenes/GameUI/GameUi.gd" id="1_556m7"]
+[ext_resource type="LabelSettings" uid="uid://bwy745t1rcflb" path="res://Resources/press_to_play_label_48.tres" id="2_556m7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3k6gv"]
+font = ExtResource("1_81r78")
+font_size = 32
+font_color = Color(0.0117647, 0.352941, 1, 1)
+outline_size = 3
+outline_color = Color(0.0117647, 0.352941, 1, 0.360784)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.662745)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y3kpf"]
+line_spacing = 10.0
+font = ExtResource("1_81r78")
+font_size = 48
+font_color = Color(0.878431, 0.654902, 0.329412, 1)
+outline_size = 3
+outline_color = Color(0.0117647, 0.352941, 1, 0.360784)
+shadow_size = 9
+shadow_color = Color(0, 0, 0, 0.662745)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_556m7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "0000"
+label_settings = SubResource("LabelSettings_3k6gv")
+
+[node name="GameOverLabel" type="Label" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_y3kpf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PressSpaceLabel" type="Label" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "PRESS SPACE"
+label_settings = ExtResource("2_556m7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChangeCTATimer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="ChangeCTATimer" to="." method="_on_change_cta_timer_timeout"]
